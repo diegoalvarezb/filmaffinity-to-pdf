@@ -24,7 +24,7 @@ Export your FilmAffinity votes to a PDF.
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd <project-directory>
+   cd filmaffinity-to-pdf
    ```
 
 2. Create a virtual environment and install dependencies:
@@ -44,6 +44,10 @@ Export your FilmAffinity votes to a PDF.
    python filmaffinity_exporter.py
    ```
 
+3. Enter your FilmAffinity user id and press Enter.
+
+You can find your user id by going to your profile page and looking at the URL. It is the value of the url param `user_id`.
+
 ## Project Structure
 
 - `filmaffinity_exporter.py`: Main script that handles web scraping and PDF generation
@@ -60,10 +64,6 @@ Export your FilmAffinity votes to a PDF.
 - Make sure you're always working within the Pipenv virtual environment
 - The virtual environment helps isolate project dependencies from your global Python installation
 - Pipenv automatically manages your project's dependencies through the Pipfile
-
-## Contributing
-
-Instructions for how to contribute to the project.
 
 ## License
 
