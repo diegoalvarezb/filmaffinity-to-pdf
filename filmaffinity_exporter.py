@@ -295,7 +295,7 @@ def main():
     print("Getting rated movies...")
     exporter.get_voted_movies()
 
-    output_filename = f"rated_movies_{user_id}.pdf"
+    output_filename = f"fa_ratings_{user_id}.pdf"
     print(f"Exporting to PDF: {output_filename}")
     exporter.export_to_pdf(output_filename)
 
