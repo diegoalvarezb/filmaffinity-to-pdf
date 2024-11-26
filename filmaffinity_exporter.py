@@ -135,12 +135,12 @@ class FilmaffinityExporter:
         """
         table_data = [[]]
 
-        # Título y año
+        # Title
         title_text = f"{movie['title']}"
         title = Paragraph(title_text, styles['movie_title'])
         table_data[0].append(title)
 
-        # Bandera
+        # Flag
         if movie.get('flag_url'):
             try:
                 flag_data = requests.get(movie['flag_url'], headers=self.headers).content
@@ -153,12 +153,12 @@ class FilmaffinityExporter:
         else:
             table_data[0].append('')
 
-        # Ajustamos los anchos para que coincidan con el ancho de la columna de información
-        title_table = Table(table_data, colWidths=[5.2*inch, 0.3*inch])  # Reducido de 5.7 a 5.2
+        # Adjust the widths to match the width of the information column
+        title_table = Table(table_data, colWidths=[5.2*inch, 0.3*inch])
         title_table.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-            ('ALIGN', (0,0), (0,0), 'LEFT'),   # Título alineado a la izquierda
-            ('ALIGN', (1,0), (1,0), 'RIGHT'),  # Bandera alineada a la derecha
+            ('ALIGN', (0,0), (0,0), 'LEFT'),
+            ('ALIGN', (1,0), (1,0), 'RIGHT'),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
             ('RIGHTPADDING', (0,0), (-1,-1), 0),
         ]))
@@ -171,7 +171,6 @@ class FilmaffinityExporter:
         info_cell = []
         info_cell.append(title_table)
 
-        # Combinamos ambos ratings en un solo Paragraph
         rating_text = f"<b>{movie['own_rating']}</b> ({movie['rating']})"
         ratings = Paragraph(rating_text, styles['rating'])
         info_cell.append(ratings)
@@ -257,14 +256,14 @@ class FilmaffinityExporter:
         styles = self._create_styles()
 
         for movie in self.movies:
-            # Tabla principal para cada película
+            # Main table for each movie
             movie_data = [[]]
 
-            # Celda del póster (columna izquierda)
+            # Poster cell (left column)
             poster_cell = self._create_movie_poster_cell(movie)
             movie_data[0].append(poster_cell)
 
-            # Celda de información (columna derecha)
+            # Information cell (right column)
             info_cell = self._create_movie_info_cell(
                 movie,
                 styles,
@@ -272,7 +271,7 @@ class FilmaffinityExporter:
             )
             movie_data[0].append(info_cell)
 
-            # Crear tabla con póster e información
+            # Create table with poster and information
             movie_table = Table(movie_data, colWidths=[1*inch, 5.5*inch])
             movie_table.setStyle(TableStyle([
                 ('VALIGN', (0,0), (-1,-1), 'TOP'),
